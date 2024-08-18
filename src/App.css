@@ -1,0 +1,116 @@
+@font-face {
+    font-family: 'intro_rust_gbase_2_line';
+    src: url('./introrustg-base2line-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'source_sans_proextralight';
+    src: url('./sourcesanspro-extralight-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: min-content auto;
+}
+
+header {
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    background-color: #1f2937;
+    font-family: "intro_rust_gbase_2_line", sans-serif;
+}
+
+header > .h1img {
+    display: flex;
+    gap: 15px;
+}
+
+header svg {
+    fill: white;
+    display: block;
+    height: 40px;
+    width: 40px;
+}
+header ul {
+    display: flex;
+    gap: 10px;
+}
+
+ul > li {
+    list-style-type: none;
+}
+
+li > a {
+    box-sizing: border-box;
+    border-radius: 15px;
+    display: block;
+    padding: 15px;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+a.active {
+    background-color: #15803d;
+    border: 2px solid white;
+}
+
+.errorpage {
+    font-weight: 700;
+    padding: 20px;
+    font-family: "intro_rust_gbase_2_line", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    height: 100%;
+    background-color: #60a5fa;
+}
+
+.errorpage a {
+    text-decoration: none;
+    display: inline-block;
+    color: white;
+    
+}
+
+@media screen and (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+@media (hover:hover) {
+    li > a:hover {
+        background-color: #fb923c;
+    }
+}
+
+
+
+
