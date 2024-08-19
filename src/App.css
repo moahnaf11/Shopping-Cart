@@ -70,16 +70,115 @@ li > a {
     text-decoration: none;
 }
 
-main {
-    padding: 20px;
-}
+
 
 a.active {
     background-color: #15803d;
     border: 2px solid white;
 }
 
+.home, .shop, .contact {
+    padding: 20px;
+}
+
+.home {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.home h1 {
+    font-family: "intro_rust_gbase_2_line", sans-serif;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 5px #1f2937;
+
+}
+
+.home h1:nth-of-type(2) {
+    margin-top: 20px;
+}
+
+.home img {
+    width: 40%;
+    display: block;
+    object-fit: contain;
+    animation: rotateY 5s linear;
+    animation-fill-mode: both;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    perspective: 1000px;
+}
+
+@keyframes rotateY {
+    from {
+        transform: rotateY(0deg); /* Starting position */
+    }
+    to {
+        transform: rotateY(360deg); 
+    }
+}
+
+.home .title {
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.home p {
+    font-family: 'source_sans_proextralight', sans-serif;
+    max-width: 500px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: white;
+    text-align: center;
+    font-weight: 900;
+    font-size: 18px;
+    box-shadow: 0px 0px 5px 5px #1f2937;
+}
+
+.home::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url('/shop.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+}
+
+.home ul {
+    background-color: white;
+    max-width: 700px;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0px 0px 5px 5px #1f2937;
+    font-family: 'source_sans_proextralight', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    
+}
+
+.home ul div {
+    font-family: "intro_rust_gbase_2_line", sans-serif;;
+    font-weight: 700;
+    text-align: center;
+}
+
 .errorpage {
+    height: 100%;
     font-weight: 700;
     padding: 20px;
     font-family: "intro_rust_gbase_2_line", sans-serif;
@@ -96,6 +195,18 @@ a.active {
     display: inline-block;
     color: white;
     
+}
+
+.contact {
+    background-color: #6b7280;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact h1 {
+    font-family: "intro_rust_gbase_2_line", sans-serif;
 }
 
 @media screen and (max-width: 600px) {
