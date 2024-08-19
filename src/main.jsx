@@ -5,7 +5,7 @@ import App from './App.jsx'
 import './index.css'
 import { Home } from './components/Home.jsx'
 import { Error } from './components/Error.jsx'
-import { Contact } from './components/Contact.jsx'
+import { Contact, contactAction } from './components/Contact.jsx'
 import { Shop } from './components/Shop.jsx'
 
 
@@ -14,7 +14,7 @@ const router = createBrowserRouter(
     <Route path='/' element={<App />}>
       <Route index element={<Home />}></Route> 
       <Route path='shop' element={<Shop />}>Shop</Route>
-      <Route path='contact' element={<Contact />}>Contact</Route>
+      <Route path='contact' element={<Contact />} action={contactAction}>Contact</Route>
 
       <Route path='*' element={<Error />}></Route>
     </Route>
