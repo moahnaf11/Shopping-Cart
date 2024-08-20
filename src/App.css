@@ -140,7 +140,7 @@ a.active {
     font-weight: 700;
 }
 
-.shop main .menitem {
+.shop main .menitem, .shop main .womenitem {
     height: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
