@@ -1,7 +1,60 @@
 import { Form, useActionData, Link } from "react-router-dom"
+import { useState, useEffect } from "react";
 
 export function Checkout() {
-    const checkoutdata = useActionData()
+    const [formdata, setFormdata] = useState({
+        cardnumber: "",
+        cv: "",
+        name: "",
+        expirydate: "",
+        email: "",
+    });
+    const checkoutdata = useActionData();
+
+    function handleChange(e) {
+        let {name, value} = e.target;
+
+        if (name === "cardnumber") {
+            value = value
+            .replace(/[^\d]/g, '')
+            .replace(/(\d{4})/g, '$1 ')
+            .trim();
+        }   else if (name === "cv") {
+            value = value
+            .replace(/[^\d]/g, '')
+            .trim();
+        }
+
+
+        setFormdata((prev) => ({
+            ...prev,
+            [name]: value,
+        }))
+    }
+
+    // reset form
+    function handleReset () {
+        setFormdata({
+            cardnumber: "",
+            cv: "",
+            name: "",
+            expirydate: "",
+            email: "",
+        })
+    }
+
+    useEffect(() => {
+        if (checkoutdata) {
+            setFormdata({
+                cardnumber: "",
+                cv: "",
+                name: "",
+                expirydate: "",
+                email: "",
+            });
+        }
+    }, [checkoutdata]);
+
 
 
     return (
@@ -16,32 +69,32 @@ export function Checkout() {
 
             <section>
                 <h1>Checkout</h1>
-                <Form method="post" action="/checkout">
+                <Form method="post" action="/checkout" onReset={handleReset}>
                     <h1>credit card</h1>
                     <div className="row1">
                         <div className="card-number">
                             <label htmlFor="cardnumber">Card Number <span>*</span></label>
-                            <input type="text" id="cardnumber" name="cardnumber" placeholder="0000 0000 0000 0000" pattern="^\d{4} \d{4} \d{4} \d{4}$" inputMode="tel" maxLength="19" required/>
+                            <input value={formdata.cardnumber} onChange={handleChange} type="text" id="cardnumber" name="cardnumber" placeholder="0000 0000 0000 0000" maxLength="19" pattern="^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$" required/>
                         </div>
                         <div className="cvv">
                             <label htmlFor="cv">CVV <span>*</span></label>
-                            <input type="text" id="cv" name="cv" placeholder="123" pattern="^\d{3}$" required/>
+                            <input value={formdata.cvv} onChange={handleChange} type="text" id="cv" name="cv" placeholder="123" pattern="^[0-9]{3}$" maxLength="3" required/>
                         </div>
                     </div>
 
                     <div className="name">
                         <label htmlFor="name">Name <span>*</span></label>
-                        <input type="text" id="name" name="name" placeholder="Ahnaf" required/>
+                        <input value={formdata.name} onChange={handleChange} type="text" id="name" name="name" placeholder="Ahnaf" required/>
                     </div>
 
                     <div className="expirydate">
                         <label htmlFor="date">Expiry Date <span>*</span></label>
-                        <input type="text" id="expirydate" name="expirydate" placeholder="MM/YY" pattern="^(0[1-9]|1[0-2])\/\d{2}$" required/>
+                        <input value={formdata.expirydate} onChange={handleChange} type="text" id="expirydate" name="expirydate" placeholder="MM/YY" pattern="^(0[1-9]|1[0-2])\/\d{2}$" required/>
                     </div>
 
                     <div className="email">
                         <label htmlFor="email">Email <span>*</span></label>
-                        <input type="email" id="email" name="email" placeholder="ahnaf@top.com" required/>
+                        <input value={formdata.email} onChange={handleChange} type="email" id="email" name="email" placeholder="ahnaf@top.com" required/>
                     </div>
 
                     <div className="button-container">
@@ -53,8 +106,7 @@ export function Checkout() {
 
             </section>
             {checkoutdata && checkoutdata.name && checkoutdata.email && <div className="thankyou">
-                Thank you {checkoutdata.name} for shopping with quick cart! You will receive a confirmation email of ur purchase at {checkoutdata.email}
-                Meanwhile click <Link to="/">Home</Link> to redirect back to the home page.
+                Thank you {checkoutdata.name} for shopping with quick cart! You will receive a confirmation email of your purchase at {checkoutdata.email} Meanwhile click <Link to="/">Home</Link> to redirect back to the home page.
             </div> }
 
 

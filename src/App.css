@@ -517,7 +517,7 @@ div.button-container {
 
 .checkingout section:first-child {
     background-color: white;
-    width: 700px;
+    min-width: 70%;
     height: 400px;
     font-family: "intro_rust_gbase_2_line", sans-serif;
     font-weight: 700;
@@ -531,7 +531,7 @@ div.button-container {
     font-family: "intro_rust_gbase_2_line", sans-serif;
     font-weight: 700;
     border: 5px solid white;
-    min-width: 700px;
+    min-width: 50%;
     padding: 20px;
     box-sizing: border-box;
     border-radius: 20px;
@@ -540,43 +540,78 @@ div.button-container {
 
 .checkingout form {
     width: 100%;
+    box-sizing: border-box;
 }
 
 .checkingout form div {
     display: flex;
     gap: 20px;
+    box-sizing: border-box;
 }
 
 .checkingout .card-number, .checkingout .cvv {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    gap: 10px;
 }
 
 .checkingout .card-number label, .checkingout .cvv label {
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
+}
 
+.checkingout .card-number input {
+    box-sizing: border-box;
 }
 
 
 .checkingout .card-number {
     flex-grow: 1;
+    min-width: 150px;
 }
 
 
 .checkingout .row1 {
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: space-between;
+    gap: 100px;
 }
 
 .checkingout .cvv input {
     max-width: 60px;
 }
 
+.checkingout label {
+    text-align: left;
+    min-width: 80px;
+}
+
+.checkingout .thankyou {
+    font-family: "intro_rust_gbase_2_line", sans-serif;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+}
+
+
+.checkingout .thankyou a {
+    text-decoration: none;
+    color: lightgreen;
+}
+
+
+
 @media screen and (max-width: 600px) {
     header {
         flex-direction: column;
         gap: 20px;
+    }
+
+    .checkingout section:first-child {
+        min-width: 100%;
     }
 
     .shop main input {
