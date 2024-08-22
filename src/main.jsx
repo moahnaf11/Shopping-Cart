@@ -9,6 +9,8 @@ import { Contact, contactAction } from './components/Contact.jsx'
 import { Shop } from './components/Shop.jsx'
 import { Men } from './components/Men.jsx'
 import { Women } from './components/Women.jsx'
+import { MenItem } from './components/MenItem.jsx'
+import { WomenItem } from './components/WomenItem.jsx'
 
 
 const router = createBrowserRouter(
@@ -17,7 +19,10 @@ const router = createBrowserRouter(
       <Route index element={<Home />}></Route> 
       <Route path='shop' element={<Shop />}>
         <Route index element={<Men />}></Route>
-        <Route path='women' element={<Women />}></Route>
+        <Route path=':men' element={<MenItem />}></Route>
+        <Route path='women' element={<Women />}>
+          <Route path=':women' element={<WomenItem />}></Route>
+        </Route>
       </Route>
       <Route path='contact' element={<Contact />} action={contactAction}>Contact</Route>
 

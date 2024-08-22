@@ -1,5 +1,6 @@
 import { input } from "@testing-library/user-event/dist/cjs/event/input.js";
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom";
 
 export function Men() {
     const [loading, setLoading] = useState(true);
@@ -37,7 +38,7 @@ export function Men() {
         if (e.target.value) {
             console.log(e.target.value)
             setData(prev => {
-                const updatedArray = prev.filter((item) => item.title.toLowerCase().includes(e.target.value.toLowerCase()))
+                const updatedArray = fullData.filter((item) => item.title.toLowerCase().includes(e.target.value.toLowerCase()))
                 console.log(updatedArray);
                 return updatedArray;
             })
@@ -141,7 +142,7 @@ export function Men() {
                                 <img src={item.image} alt="item image" />
                             </div>
                             <div className="price">${item.price}</div>
-                            <div><button>View</button></div>
+                            <div><Link to={`${item.id}`} state={{item: fullData.filter((data) => data.id === item.id)}}>View</Link></div>
                             <div className="quantity">
                                 <button className="add" onClick={(e) => handleQuantity(e, item.id, "plus")}>+</button>
                                 <form onSubmit={handleSubmit} id="myform" action="" method="post"><input value={handleValue(item.id)} onChange={(e) => handleQuantity(e, item.id)} type="text" pattern="^(0|[1-9][0-9]*)$" /></form>

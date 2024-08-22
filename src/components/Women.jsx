@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 export function Women() {
     const [loading, setLoading] = useState(true);
@@ -35,7 +37,7 @@ export function Women() {
     function handleSearch(e) {
         if (e.target.value) {
             setData(prev => (
-                prev.filter((item) => item.title.toLowerCase().startsWith(e.target.value.toLowerCase()))
+                fullData.filter((item) => item.title.toLowerCase().includes(e.target.value.toLowerCase()))
 
             ))
 
@@ -139,7 +141,7 @@ export function Women() {
                                 <img src={item.image} alt="item image" />
                             </div>
                             <div className="price">${item.price}</div>
-                            <div><button>View</button></div>
+                            <div><Link to={`${item.id}`} state={{item: fullData.filter((data) => data.id === item.id)}}>View</Link></div>
                             <div className="quantity">
                                 <button className="add" onClick={(e) => handleQuantity(e, item.id, "plus")}>+</button>
                                 <form onSubmit={handleSubmit} id="myform" action="" method="post"><input value={handleValue(item.id)} onChange={(e) => handleQuantity(e, item.id)} type="text" pattern="^(0|[1-9][0-9]*)$" /></form>
@@ -151,6 +153,10 @@ export function Women() {
 
 
             </div>}
+
+            <main>
+                <Outlet></Outlet>
+            </main>
 
         </>
     )
