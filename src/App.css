@@ -43,6 +43,7 @@ header {
 header > .h1img {
     display: flex;
     gap: 15px;
+    align-items: center;
 }
 
 header svg {
@@ -56,11 +57,15 @@ header ul {
     gap: 10px;
 }
 
-div.checkout {
+a.checkout {
     display: flex;
     align-items: center;
     gap: 10px;
     font-weight: 700;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 20px;
 }
 
 ul > li {
@@ -446,7 +451,7 @@ div.button-container {
     height: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-auto-rows: 450px;
+    grid-auto-rows: 570px;
 }
 
 .singlemen > .singlecard .title, .singlemen > .singlecard .price, .singlemen > .singlecard .rating {
@@ -501,6 +506,73 @@ div.button-container {
 
 }
 
+.checkingout {
+    background-color: #6b7280;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px;
+}
+
+.checkingout section:first-child {
+    background-color: white;
+    width: 700px;
+    height: 400px;
+    font-family: "intro_rust_gbase_2_line", sans-serif;
+    font-weight: 700;
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px 7px #1f2937;
+}
+
+.checkingout section:nth-child(2) {
+    font-family: "intro_rust_gbase_2_line", sans-serif;
+    font-weight: 700;
+    border: 5px solid white;
+    min-width: 700px;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px 7px #1f2937;
+}
+
+.checkingout form {
+    width: 100%;
+}
+
+.checkingout form div {
+    display: flex;
+    gap: 20px;
+}
+
+.checkingout .card-number, .checkingout .cvv {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.checkingout .card-number label, .checkingout .cvv label {
+
+}
+
+
+.checkingout .card-number {
+    flex-grow: 1;
+}
+
+
+.checkingout .row1 {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.checkingout .cvv input {
+    max-width: 60px;
+}
+
 @media screen and (max-width: 600px) {
     header {
         flex-direction: column;
@@ -512,18 +584,28 @@ div.button-container {
     }
 
     .singlemen, .singlewomen {
-        grid-auto-rows: 900px;
+        grid-auto-rows: min-content;
     }
 
     .shop main .itemcards img, .singlemen > .singlecard img, .singlewomen > .singlecard img {
         max-height: none;
     }
 
+    .shop main .menitem, .shop main .womenitem {
+        grid-auto-rows: 570px;
+    }
+
+
+
 
 }
 
 @media (hover:hover) {
     li > a:hover {
+        background-color: #fb923c;
+    }
+
+    .h1img a:hover {
         background-color: #fb923c;
     }
 }

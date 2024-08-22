@@ -10,21 +10,22 @@ import { Shop } from './components/Shop.jsx'
 import { Men } from './components/Men.jsx'
 import { Women } from './components/Women.jsx'
 import { MenItem } from './components/MenItem.jsx'
-import { WomenItem } from './components/WomenItem.jsx'
+import { Checkout, checkoutSubmit } from './components/Checkout.jsx'
+
 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
       <Route index element={<Home />}></Route> 
-      <Route path='shop' element={<Shop />}>
+      <Route path='shop' element={<Shop />} errorElement={<Error />}>
         <Route index element={<Men />}></Route>
         <Route path=':men' element={<MenItem />}></Route>
-        <Route path='women' element={<Women />}>
-          <Route path=':women' element={<WomenItem />}></Route>
-        </Route>
+        <Route path='women' element={<Women />}></Route>
+
       </Route>
-      <Route path='contact' element={<Contact />} action={contactAction}>Contact</Route>
+      <Route path='contact' element={<Contact />} action={contactAction}></Route>
+      <Route path='checkout' element={<Checkout />} action={checkoutSubmit}></Route>
 
       <Route path='*' element={<Error />}></Route>
     </Route>

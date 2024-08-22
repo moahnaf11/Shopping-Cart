@@ -1,4 +1,4 @@
-import { Form, Link, redirect, useActionData } from "react-router-dom"
+import { Form, Link, useActionData } from "react-router-dom"
 
 export function Contact() {
     const data = useActionData()

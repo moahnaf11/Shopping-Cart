@@ -1,10 +1,14 @@
 import { useParams, useLocation } from "react-router-dom";
 import starIcon from "../rating.svg"
+import GoldStar from "../goldstar.svg"
 
 export function MenItem() {
     const { men } = useParams();
-    console.log(men);
-    const location = useLocation()
+    console.log("men", men);
+    if (men > 20 || men < 1) {
+        throw new Error("Sorry Page not Found");
+    }
+    const location = useLocation();
 
     const {item} = location.state;
     console.log(item);
@@ -25,11 +29,11 @@ export function MenItem() {
                 <div className="rating">
                     <div className="rate">Rating: {Math.floor(item[0].rating.rate)}</div>
                     <div className="starimages">
-                        {rating >= 1 ? <img style={{backgroundColor: "#facc15"}} src={starIcon} alt="star icons" /> : <img src={starIcon} alt="star icons" />}
-                        {rating >= 2 ? <img style={{backgroundColor: "#facc15"}} src={starIcon} alt="star icons" /> : <img src={starIcon} alt="star icons" />}
-                        {rating >= 3 ? <img style={{backgroundColor: "#facc15"}} src={starIcon} alt="star icons" /> : <img src={starIcon} alt="star icons" />}
-                        {rating >= 4 ? <img style={{backgroundColor: "#facc15"}} src={starIcon} alt="star icons" /> : <img src={starIcon} alt="star icons" />}
-                        {rating >= 5 ? <img style={{backgroundColor: "#facc15"}} src={starIcon} alt="star icons" /> : <img src={starIcon} alt="star icons" />}
+                        {rating >= 1 ? <img src={GoldStar} alt="star icons" /> : <img src={starIcon} alt="star icons" />}
+                        {rating >= 2 ? <img src={GoldStar} alt="star icons" /> : <img src={starIcon} alt="star icons" />}
+                        {rating >= 3 ? <img src={GoldStar} alt="star icons" /> : <img src={starIcon} alt="star icons" />}
+                        {rating >= 4 ? <img src={GoldStar} alt="star icons" /> : <img src={starIcon} alt="star icons" />}
+                        {rating >= 5 ? <img src={GoldStar} alt="star icons" /> : <img src={starIcon} alt="star icons" />}
                     </div>
                 </div>
                 <div className="price">${item[0].price}</div>
