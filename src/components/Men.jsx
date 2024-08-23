@@ -1,12 +1,15 @@
-import { input } from "@testing-library/user-event/dist/cjs/event/input.js";
+import { useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
+import filter from "../filter.svg"
 
 export function Men() {
+    const [cart, setCart] = useOutletContext()
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([]);
     const [fullData, setFullData] = useState([]);
     const [quantity, setQuantity] = useState([]);
+    const [disableInput, setDisableInput] = useState(false);
 
     // quantity button handlers
     function handleQuantity(e, id, action="") {
@@ -57,8 +60,37 @@ export function Men() {
     }
 
     // submit handler for add to cart button
-    function handleSubmit(e) {
+    function handleSubmit(e, product) {
         e.preventDefault();
+
+
+
+
+    }
+
+    // handler for price filter
+    function handleFilter(e) {
+        const {value} = e.target;
+        console.log(value);
+        if (value === "none") {
+            setData(fullData);
+            setDisableInput(false)
+        }   else if (value === "low") {
+            setData((prev) => {
+                let newArray = [...fullData];
+                newArray.sort((a, b) => a.price - b.price);
+                return newArray;
+            })
+            setDisableInput(true)
+
+        }   else if (value === "high") {
+            setData((prev) => {
+                let newArray = [...fullData];
+                newArray.sort((a, b) => a.price - b.price).reverse();
+                return newArray;
+            })
+            setDisableInput(true);
+        }
 
     }
 
@@ -131,7 +163,20 @@ export function Men() {
     return (
         <>
             {loading && <div className="loader">Loading...</div>}
-            <input onChange={(e) => handleSearch(e)} placeholder="search"></input>
+            <div className="searchbar">
+                <input onChange={(e) => handleSearch(e)} placeholder="search" disabled={disableInput}></input>
+                <div className="imgfilter">
+                    <img src={filter} alt="filter icon" />
+                    <form action="" method="post">
+                        <h1>price filter</h1>
+                        <select onChange={handleFilter} name="filter" id="filter">
+                            <option value="none">None</option>
+                            <option value="low">low-high</option>
+                            <option value="high">high-low</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
 
             {data.length > 0 && <div className="menitem">
                 {data.length > 0 &&
@@ -145,7 +190,7 @@ export function Men() {
                             <div><Link to={`${item.id}`} state={{item: fullData.filter((data) => data.id === item.id)}}>View</Link></div>
                             <div className="quantity">
                                 <button className="add" onClick={(e) => handleQuantity(e, item.id, "plus")}>+</button>
-                                <form onSubmit={handleSubmit} id="myform" action="" method="post"><input value={handleValue(item.id)} onChange={(e) => handleQuantity(e, item.id)} type="text" pattern="^(0|[1-9][0-9]*)$" /></form>
+                                <form onSubmit={(e) => handleSubmit(e, item)} id="myform" action="" method="post"><input value={handleValue(item.id)} onChange={(e) => handleQuantity(e, item.id)} type="text" pattern="^(0|[1-9][0-9]*)$" /></form>
                                 <button className="sub"onClick={(e) => handleQuantity(e, item.id, "minus")}>-</button>
                             </div>
                             <button type="submit" form="myform">Add to cart</button>

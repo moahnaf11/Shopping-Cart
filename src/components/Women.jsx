@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Outlet } from "react-router-dom";
+import filter from "../filter.svg"
 
 export function Women() {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([]);
     const [fullData, setFullData] = useState([]);
     const [quantity, setQuantity] = useState([]);
+    const [disableInput, setDisableInput] = useState(false);
 
     // quantity button handlers
     function handleQuantity(e, id, action="") {
@@ -57,6 +58,31 @@ export function Women() {
     // submit handler for add to cart button
     function handleSubmit(e) {
         e.preventDefault();
+
+    }
+
+    // handler for price filter
+    function handleFilter(e) {
+        const {value} = e.target;
+        console.log(value);
+        if (value === "none") {
+            setData(fullData);
+            setDisableInput(false);
+        }   else if (value === "low") {
+            setData((prev) => {
+                let newArray = [...fullData];
+                newArray.sort((a, b) => a.price - b.price);
+                return newArray;
+            })
+            setDisableInput(true);
+        }   else if (value === "high") {
+            setData((prev) => {
+                let newArray = [...fullData];
+                newArray.sort((a, b) => a.price - b.price).reverse();
+                return newArray;
+            })
+            setDisableInput(true);
+        }
 
     }
 
@@ -130,7 +156,20 @@ export function Women() {
     return (
         <>
             {loading && <div className="loader">Loading...</div>}
-            <input onChange={(e) => handleSearch(e)} placeholder="search"></input>
+            <div className="searchbar">
+                <input onChange={(e) => handleSearch(e)} placeholder="search" disabled={disableInput}></input>
+                <div className="imgfilter">
+                    <img src={filter} alt="filter icon" />
+                    <form action="" method="post">
+                        <h1>price filter</h1>
+                        <select onChange={handleFilter} name="filter" id="filter">
+                            <option value="none">None</option>
+                            <option value="low">low-high</option>
+                            <option value="high">high-low</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
 
             {data.length > 0 && <div className="womenitem">
                 {data.length > 0 &&

@@ -447,7 +447,7 @@ div.button-container {
     color: #bef264;
 }
 
-.singlemen, .singlewomen {
+.singlemen {
     height: 100%;
     display: grid;
     grid-template-columns: 1fr;
@@ -459,18 +459,13 @@ div.button-container {
     font-weight: 700;
 }
 
-.singlewomen > .singlecard .title, .singlewomen > .singlecard .price, .singlewomen > .singlecard .rating {
-    font-family: "intro_rust_gbase_2_line", sans-serif;
-    font-weight: 700;
-}
 
-
-.singlemen > .singlecard .price, .singlewomen > .singlecard .price  {
+.singlemen > .singlecard .price  {
     font-size: 20px;
     text-align: center;
 }
 
-.singlemen > .singlecard .desc, .singlewomen > .singlecard .desc {
+.singlemen > .singlecard .desc {
     font-family: 'source_sans_proextralight';
     font-weight: 900;
     font-size: 18px;
@@ -478,20 +473,21 @@ div.button-container {
     max-width: 900px;
 }
 
-.singlemen > .singlecard .description > div, .singlewomen > .singlecard .description > div {
+.singlemen > .singlecard .description > div {
     font-family: "intro_rust_gbase_2_line", sans-serif;
     font-weight: 700;
     font-size: 16px;
     display: inline-block;
 }
 
-.singlemen > .singlecard .description, .singlewomen > .singlecard .description {
+.singlemen > .singlecard .description {
     display: flex;
+    flex-direction: column;
     gap: 40px;
     align-items: center;
 }
 
-.singlemen > .singlecard .rating, .singlewomen > .singlecard .rating, .singlewomen > .singlecard .rating .starimages, .singlemen > .singlecard .rating .starimages    {
+.singlemen > .singlecard .rating, .singlemen > .singlecard .rating .starimages    {
     display: flex;
 }
 
@@ -500,7 +496,7 @@ div.button-container {
     height: 30px;
 }
 
-.singlemen > .singlecard .rating, .singlewomen > .singlecard .rating {
+.singlemen > .singlecard .rating {
     align-items: center;
     gap: 40px;
 
@@ -616,6 +612,36 @@ div.button-container {
 .checkingout .thankyou a {
     text-decoration: none;
     color: lightgreen;
+}
+
+
+div.imgfilter {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+div.imgfilter img {
+    width: 40px;
+    height: 40px;
+}
+
+div.imgfilter form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+div.imgfilter form h1 {
+    font-family: "intro_rust_gbase_2_line", sans-serif;
+    font-size: 13px;
+    color: white;
+}
+
+div.searchbar {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
 }
 
 
