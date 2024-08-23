@@ -1,5 +1,6 @@
 import { Form, useActionData, Link } from "react-router-dom"
 import { useState, useEffect } from "react";
+import card from "../card.svg"
 
 export function Checkout() {
     const [formdata, setFormdata] = useState({
@@ -23,6 +24,13 @@ export function Checkout() {
             value = value
             .replace(/[^\d]/g, '')
             .trim();
+        }   else if (name === "expirydate") {
+            value = value
+            .replace(/[^\d]/g, '')
+            .trim();
+            if (value.length > 2) {
+                value = `${value.slice(0, 2)}/${value.slice(2)}`;
+            }
         }
 
 
@@ -70,7 +78,10 @@ export function Checkout() {
             <section>
                 <h1>Checkout</h1>
                 <Form method="post" action="/checkout" onReset={handleReset}>
-                    <h1>credit card</h1>
+                    <div className="cardicon">
+                        <h1>credit card</h1>
+                        <img src={card} alt="credit card icon" />
+                    </div>
                     <div className="row1">
                         <div className="card-number">
                             <label htmlFor="cardnumber">Card Number <span>*</span></label>
@@ -78,7 +89,7 @@ export function Checkout() {
                         </div>
                         <div className="cvv">
                             <label htmlFor="cv">CVV <span>*</span></label>
-                            <input value={formdata.cvv} onChange={handleChange} type="text" id="cv" name="cv" placeholder="123" pattern="^[0-9]{3}$" maxLength="3" required/>
+                            <input value={formdata.cv} onChange={handleChange} type="text" id="cv" name="cv" placeholder="123" pattern="^[0-9]{3}$" maxLength="3" required/>
                         </div>
                     </div>
 
@@ -89,7 +100,7 @@ export function Checkout() {
 
                     <div className="expirydate">
                         <label htmlFor="date">Expiry Date <span>*</span></label>
-                        <input value={formdata.expirydate} onChange={handleChange} type="text" id="expirydate" name="expirydate" placeholder="MM/YY" pattern="^(0[1-9]|1[0-2])\/\d{2}$" required/>
+                        <input value={formdata.expirydate} maxLength="5" onChange={handleChange} type="text" id="expirydate" name="expirydate" placeholder="MM/YY" pattern="^(0[1-9]|1[0-2])\/\d{2}$" required/>
                     </div>
 
                     <div className="email">

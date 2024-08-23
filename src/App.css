@@ -543,6 +543,10 @@ div.button-container {
     box-sizing: border-box;
 }
 
+.checkingout form input {
+    font-size: 18px;
+}
+
 .checkingout form div {
     display: flex;
     gap: 20px;
@@ -587,6 +591,18 @@ div.button-container {
 .checkingout label {
     text-align: left;
     min-width: 80px;
+}
+
+.checkingout .cardicon {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+}
+
+.checkingout .cardicon img {
+    width: 100px;
+    height: 90px;
 }
 
 .checkingout .thankyou {
