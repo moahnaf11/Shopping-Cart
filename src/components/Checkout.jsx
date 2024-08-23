@@ -1,8 +1,11 @@
-import { Form, useActionData, Link } from "react-router-dom"
+import { Form, useActionData, Link, useLocation } from "react-router-dom"
 import { useState, useEffect } from "react";
 import card from "../card.svg"
 
 export function Checkout() {
+    const location = useLocation();
+    console.log(location.state);
+    const {cart} = location.state;
     const [formdata, setFormdata] = useState({
         cardnumber: "",
         cv: "",
@@ -71,7 +74,19 @@ export function Checkout() {
             <section>
                 <div className="order">
                     <h1>Your orders</h1>
-                    <div className="items"></div>
+                    <div className="items">
+                        {cart.length > 0 ? cart.map(item => {
+                            return <div className="orderitems" key={item.id}>
+                                <img src={item.image} alt="item image" />
+                                <div className="title">{item.title}</div>
+                                <div className="quant">QTY: {item.quantity}</div>
+                                <div className="total">${item.quantity * item.price}</div>
+                                <button>x</button>
+                            </div>
+                        })
+                        :  <h1>No orders yet</h1>
+                        }
+                    </div>
                 </div>
             </section>
 

@@ -66,14 +66,45 @@ export function Men() {
         const amount = q.quantity;
         if (amount > 0) {
             setCart((prev) => {
-                product.quantity = amount;
-                let newCart = [
-                    ...prev,
-                    product,
-                ]
-                console.log(newCart);
-                return newCart;
+                if (prev.findIndex(item => item.id === product.id) === -1) {
+                    const newCart = [
+                        ...prev,
+                        {
+                            ...product,
+                            quantity: amount
+                        }
+                    ]
+                    console.log("newcart", newCart);
+                    return newCart;
+                }   else {
+                    const newCart = prev.map(item => {
+                        if (item.id === product.id) {
+                            return {
+                                ...product,
+                                quantity: amount,
+                            }
+                        }   else {
+                            return item;
+                        }
+                    })
+                    console.log("newcart", newCart);
+                    return newCart;
+                }
             })
+
+            setQuantity(prev => {
+                const newquantity = prev.map(item => {
+                    if (item.id === product.id) {
+                        item.quantity = 0;
+                        return item;
+                    }   else {
+                        return item;
+                    }
+                })
+                console.log("newquantity", newquantity);
+                return newquantity;
+            })
+
 
         }
     }
@@ -200,10 +231,10 @@ export function Men() {
                             <div><Link to={`${item.id}`} state={{item: fullData.filter((data) => data.id === item.id)}}>View</Link></div>
                             <div className="quantity">
                                 <button className="add" onClick={(e) => handleQuantity(e, item.id, "plus")}>+</button>
-                                <form onSubmit={(e) => handleSubmit(e, item)} id="myform" action="" method="post"><input value={handleValue(item.id)} onChange={(e) => handleQuantity(e, item.id)} type="text" pattern="^(0|[1-9][0-9]*)$" /></form>
+                                <form onSubmit={(e) => handleSubmit(e, item)} id={item.id.toString()} action="" method="post"><input value={handleValue(item.id)} onChange={(e) => handleQuantity(e, item.id)} type="text" pattern="^(0|[1-9][0-9]*)$" /></form>
                                 <button className="sub"onClick={(e) => handleQuantity(e, item.id, "minus")}>-</button>
                             </div>
-                            <button type="submit" form="myform">Add to cart</button>
+                            <button type="submit" form={item.id.toString()}>Add to cart</button>
                         </div>
                 ))}
 

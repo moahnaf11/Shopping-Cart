@@ -514,7 +514,7 @@ div.button-container {
 .checkingout section:first-child {
     background-color: white;
     min-width: 70%;
-    height: 400px;
+    min-height: 400px;
     font-family: "intro_rust_gbase_2_line", sans-serif;
     font-weight: 700;
     box-sizing: border-box;
@@ -613,6 +613,42 @@ div.button-container {
     text-decoration: none;
     color: lightgreen;
 }
+
+.checkingout .order {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+}
+
+.checkingout .order .items {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.checkingout .order .items .orderitems {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.checkingout .order .items .orderitems button {
+    padding: 10px 20px;
+    border-radius: 15px;
+    background-color: #dc2626;
+    color: white;
+    font-family: "intro_rust_gbase_2_line", sans-serif;
+    font-weight: 700;
+}
+
+.checkingout .order .items .orderitems img {
+    object-fit: contain;
+    width: 7%;
+}
+
+
 
 
 div.imgfilter {
