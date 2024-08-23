@@ -62,10 +62,20 @@ export function Men() {
     // submit handler for add to cart button
     function handleSubmit(e, product) {
         e.preventDefault();
+        const q = quantity.find(item => item.id === product.id);
+        const amount = q.quantity;
+        if (amount > 0) {
+            setCart((prev) => {
+                product.quantity = amount;
+                let newCart = [
+                    ...prev,
+                    product,
+                ]
+                console.log(newCart);
+                return newCart;
+            })
 
-
-
-
+        }
     }
 
     // handler for price filter
