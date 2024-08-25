@@ -204,7 +204,7 @@ export function Men() {
     return (
         <>
             {loading && <div className="loader">Loading...</div>}
-            <div className="searchbar">
+            {data.length > 0 && <div className="searchbar">
                 <input onChange={(e) => handleSearch(e)} placeholder="search" disabled={disableInput}></input>
                 <div className="imgfilter">
                     <img src={filter} alt="filter icon" />
@@ -217,7 +217,7 @@ export function Men() {
                         </select>
                     </form>
                 </div>
-            </div>
+            </div>}
 
             {data.length > 0 && <div className="menitem">
                 {data.length > 0 &&
