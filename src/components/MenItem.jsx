@@ -18,7 +18,7 @@ export function MenItem() {
     return (
         <div className="singlemen">
             <div className="singlecard">
-                <div className="title">{item[0].title}</div>
+                <div data-testid="title1" className="title">{item[0].title}</div>
                 <div className="img">
                     <img src={item[0].image} alt="mens item picture" />
                 </div>

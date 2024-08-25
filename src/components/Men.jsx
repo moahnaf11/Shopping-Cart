@@ -231,7 +231,7 @@ export function Men() {
                             <div><Link to={`${item.id}`} state={{item: fullData.filter((data) => data.id === item.id)}}>View</Link></div>
                             <div className="quantity">
                                 <button className="add" onClick={(e) => handleQuantity(e, item.id, "plus")}>+</button>
-                                <form onSubmit={(e) => handleSubmit(e, item)} id={item.id.toString()} action="" method="post"><input value={handleValue(item.id)} onChange={(e) => handleQuantity(e, item.id)} type="text" pattern="^(0|[1-9][0-9]*)$" /></form>
+                                <form onSubmit={(e) => handleSubmit(e, item)} id={item.id.toString()} action="" method="post"><input data-testid="inputbox" value={handleValue(item.id)} onChange={(e) => handleQuantity(e, item.id)} type="text" pattern="^(0|[1-9][0-9]*)$" /></form>
                                 <button className="sub"onClick={(e) => handleQuantity(e, item.id, "minus")}>-</button>
                             </div>
                             <button type="submit" form={item.id.toString()}>Add to cart</button>

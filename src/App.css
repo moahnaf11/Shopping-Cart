@@ -647,6 +647,7 @@ div.button-container {
     color: white;
     font-family: "intro_rust_gbase_2_line", sans-serif;
     font-weight: 700;
+    border: none;
 }
 
 .checkingout .order .items .orderitems img {
@@ -751,6 +752,41 @@ div.searchbar {
     .h1img a:hover {
         background-color: #fb923c;
     }
+
+    .itemcards a:hover {
+        box-shadow: 0px 0px 5px 4px #166534;
+    }
+
+    .itemcards .quantity button.add:hover {
+        box-shadow: 0px 0px 5px 4px #166534;
+    }
+
+    .itemcards .quantity button.sub:hover {
+        box-shadow: 0px 0px 5px 4px #b91c1c;
+    }
+
+
+    .itemcards button[type="submit"]:hover {
+        box-shadow: 0px 0px 5px 4px #1f2937;
+
+    }
+
+    .orderitems button:hover {
+        box-shadow: 0px 0px 5px 4px #b91c1c;
+
+    }
+
+    form .button-container button:hover {
+        box-shadow: 0px 0px 5px 4px #166534;
+
+
+    }
+
+
+
+
+
+
 }
 
 

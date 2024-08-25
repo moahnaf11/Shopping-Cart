@@ -21,9 +21,10 @@ const routes = createMemoryRouter([
           { path: 'contact', element: <Contact /> },
           { path: 'checkout', element: <Checkout /> },
         ],
-      },
+    },
     
 ]);
+
 describe("App component tests", () => {
     it("shows navLinks", async () => {
         render(
