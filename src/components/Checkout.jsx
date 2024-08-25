@@ -90,7 +90,7 @@ export function Checkout() {
         <div className="checkingout">
 
             <section>
-                <div className="order">
+                <div className="order" data-testid="orderdiv">
                     {cart.length > 0 ? <h1>Your orders</h1> : <h1>No orders yet</h1>}
                     <div className="items">
                         {cart.length > 0 && cart.map(item => {

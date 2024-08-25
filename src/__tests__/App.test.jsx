@@ -44,6 +44,18 @@ describe("App component tests", () => {
 
     });
 
+    it("home renders as default in app outlet", async () => {
+        render(
+            <RouterProvider router={routes}>
+                <App />
+            </RouterProvider>,
+        );
+
+        screen.debug();
+        const home = screen.getByText(/Welcome to Quick Cart/i);
+        expect(home).toBeInTheDocument();
+    })
+
 
     it("shows contact page when contact clicked", async () => {
         render(
@@ -57,4 +69,32 @@ describe("App component tests", () => {
         const message = screen.getByRole("heading", {name: /Leave us a message/i});
         expect(message).toBeInTheDocument();
     })
+
+    it("shows shop page when shop clicked", async () => {
+        render(
+            <RouterProvider router={routes}>
+                <App />
+            </RouterProvider>,
+        );
+        const user = userEvent.setup();
+        const shop = screen.getByTestId("shop");
+        await user.click(shop);
+        const menLink = screen.getByRole("link", {name: /Men's Clothing \/ electronics/i});
+        expect(menLink).toBeInTheDocument();
+    })
+
+    it("shows checkout page when contact clicked", async () => {
+        render(
+            <RouterProvider router={routes}>
+                <App />
+            </RouterProvider>,
+        );
+        const user = userEvent.setup();
+        const checkout = screen.getByTestId("checkout");
+        await user.click(checkout);
+        const checkPage = screen.getByTestId("orderdiv");
+        expect(checkPage).toBeInTheDocument();
+    })
+
+
 })
