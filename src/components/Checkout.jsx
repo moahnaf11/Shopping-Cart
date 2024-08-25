@@ -99,7 +99,7 @@ export function Checkout() {
                                 <div className="title">{item.title}</div>
                                 <div className="information">
                                     <div className="quant">QTY: {item.quantity}</div>
-                                    <div className="total">${item.quantity * item.price}</div>
+                                    <div className="total">${(item.quantity * item.price).toFixed(2)}</div>
                                     <button onClick={(e) => handleCart(e, item.id)}>x</button>
                                 </div>
                             </div>
