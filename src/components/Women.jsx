@@ -202,7 +202,7 @@ export function Women() {
     return (
         <>
             {loading && <div className="loader">Loading...</div>}
-            {data.length > 0 && <div data-testid="womendiv" className="searchbar">
+            {fullData.length > 0 && <div data-testid="womendiv" className="searchbar">
                 <input onChange={(e) => handleSearch(e)} placeholder="search" disabled={disableInput}></input>
                 <div className="imgfilter">
                     <img src={filter} alt="filter icon" />
