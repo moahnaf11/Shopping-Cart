@@ -13,7 +13,6 @@ import { MenItem } from './components/MenItem.jsx'
 import { Checkout, checkoutSubmit } from './components/Checkout.jsx'
 
 
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>

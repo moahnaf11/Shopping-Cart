@@ -1,11 +1,10 @@
-import { Form, useActionData, Link, useLocation } from "react-router-dom"
+import { Form, useActionData, Link, useOutletContext } from "react-router-dom"
 import { useState, useEffect } from "react";
 import card from "../card.svg"
 
 export function Checkout() {
-    const location = useLocation();
-    console.log(location.state);
-    const {cart} = location.state;
+    const [cart, setCart] = useOutletContext();
+    console.log(cart);
     const [formdata, setFormdata] = useState({
         cardnumber: "",
         cv: "",
@@ -54,6 +53,23 @@ export function Checkout() {
         })
     }
 
+    // delete cart item
+    function handleCart(e, key) {
+        setCart(prev => {
+            const newCart = prev.filter(item => item.id !== key);
+            console.log("new", newCart);
+            return newCart;
+        })
+    }
+
+    // total checkout price
+    function total () {
+        return cart.reduce((total, item) => {
+            return total + (item.quantity * item.price);
+
+        }, 0)
+    }
+
     useEffect(() => {
         if (checkoutdata) {
             setFormdata({
@@ -63,6 +79,8 @@ export function Checkout() {
                 expirydate: "",
                 email: "",
             });
+
+            setCart([]);
         }
     }, [checkoutdata]);
 
@@ -73,24 +91,25 @@ export function Checkout() {
 
             <section>
                 <div className="order">
-                    <h1>Your orders</h1>
+                    {cart.length > 0 ? <h1>Your orders</h1> : <h1>No orders yet</h1>}
                     <div className="items">
-                        {cart.length > 0 ? cart.map(item => {
+                        {cart.length > 0 && cart.map(item => {
                             return <div className="orderitems" key={item.id}>
                                 <img src={item.image} alt="item image" />
                                 <div className="title">{item.title}</div>
-                                <div className="quant">QTY: {item.quantity}</div>
-                                <div className="total">${item.quantity * item.price}</div>
-                                <button>x</button>
+                                <div className="information">
+                                    <div className="quant">QTY: {item.quantity}</div>
+                                    <div className="total">${item.quantity * item.price}</div>
+                                    <button onClick={(e) => handleCart(e, item.id)}>x</button>
+                                </div>
                             </div>
-                        })
-                        :  <h1>No orders yet</h1>
-                        }
+                        })}
                     </div>
                 </div>
+                {cart.length > 0 && <div className="totalprice">Checkout Total: ${total().toFixed(2)}</div>}
             </section>
 
-            <section>
+            {cart.length > 0 && <section>
                 <h1>Checkout</h1>
                 <Form method="post" action="/checkout" onReset={handleReset}>
                     <div className="cardicon">
@@ -130,7 +149,8 @@ export function Checkout() {
 
                 </Form>
 
-            </section>
+            </section>}
+
             {checkoutdata && checkoutdata.name && checkoutdata.email && <div className="thankyou">
                 Thank you {checkoutdata.name} for shopping with quick cart! You will receive a confirmation email of your purchase at {checkoutdata.email} Meanwhile click <Link to="/">Home</Link> to redirect back to the home page.
             </div> }
