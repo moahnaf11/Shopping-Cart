@@ -1,9 +1,10 @@
-import { Form, useActionData, Link, useOutletContext } from "react-router-dom"
-import { useState, useEffect } from "react";
+import { Form, useActionData, Link } from "react-router-dom"
+import { useState, useEffect, useContext } from "react";
 import card from "../card.svg"
+import { CartContext } from "../App";
 
 export function Checkout() {
-    const [cart, setCart] = useOutletContext();
+    const [cart, setCart] = useContext(CartContext);
     console.log(cart);
     const [formdata, setFormdata] = useState({
         cardnumber: "",

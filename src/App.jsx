@@ -1,6 +1,8 @@
-import { useState } from 'react'
+import { useState, createContext } from 'react'
 import './App.css'
 import { NavLink, Outlet } from 'react-router-dom'
+
+export const CartContext = createContext({});
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -31,7 +33,9 @@ function App() {
       </header>
 
       <main>
-        <Outlet context={[cart, setCart]}></Outlet>
+        <CartContext.Provider value={[cart, setCart]}>
+          <Outlet></Outlet>
+        </CartContext.Provider>
       </main>
     </>
   )

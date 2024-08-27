@@ -1,7 +1,6 @@
-import { NavLink, Outlet, useOutletContext } from "react-router-dom"
+import { NavLink, Outlet } from "react-router-dom"
 
 export function Shop() {
-    const [cart, setCart] = useOutletContext();
     return (
         <>
             <div className="shop">
@@ -13,7 +12,7 @@ export function Shop() {
                 </nav>
 
                 <main>
-                    <Outlet context={[cart, setCart]}></Outlet>
+                    <Outlet></Outlet>
                 </main>
             </div>
         </>

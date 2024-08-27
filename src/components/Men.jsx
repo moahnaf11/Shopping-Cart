@@ -1,10 +1,10 @@
-import { useOutletContext } from "react-router-dom";
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { Link } from "react-router-dom";
 import filter from "../filter.svg"
+import { CartContext } from "../App";
 
 export function Men() {
-    const [cart, setCart] = useOutletContext()
+    const [, setCart] = useContext(CartContext);
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([]);
     const [fullData, setFullData] = useState([]);
